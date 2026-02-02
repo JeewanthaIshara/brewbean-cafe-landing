@@ -531,6 +531,55 @@ function trapFocus(element) {
 }
 
 // ========================================
+// CAROUSEL FUNCTIONALITY
+// ========================================
+let currentCarouselIndex = 1;
+
+function nextSlide() {
+    showSlide(currentCarouselIndex += 1);
+}
+
+function prevSlide() {
+    showSlide(currentCarouselIndex -= 1);
+}
+
+function currentSlide(n) {
+    showSlide(currentCarouselIndex = n);
+}
+
+function showSlide(n) {
+    const items = document.querySelectorAll('.carousel-item');
+    const indicators = document.querySelectorAll('.indicator');
+
+    if (n > items.length) {
+        currentCarouselIndex = 1;
+    }
+    if (n < 1) {
+        currentCarouselIndex = items.length;
+    }
+
+    items.forEach(item => item.classList.remove('active'));
+    indicators.forEach(indicator => indicator.classList.remove('active'));
+
+    if (items[currentCarouselIndex - 1]) {
+        items[currentCarouselIndex - 1].classList.add('active');
+    }
+    if (indicators[currentCarouselIndex - 1]) {
+        indicators[currentCarouselIndex - 1].classList.add('active');
+    }
+}
+
+// Auto-advance carousel every 6 seconds
+setInterval(() => {
+    nextSlide();
+}, 6000);
+
+// Initialize carousel on page load
+document.addEventListener('DOMContentLoaded', () => {
+    showSlide(currentCarouselIndex);
+});
+
+// ========================================
 // CONSOLE MESSAGE
 // ========================================
 console.log('%c🎉 Welcome to Brew Haven! ☕', 'color: #6f4e37; font-size: 20px; font-weight: bold;');
