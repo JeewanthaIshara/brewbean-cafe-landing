@@ -1,28 +1,15 @@
 // ========================================
-// LOAD NAV AND FOOTER
+// INITIALIZE ON PAGE LOAD
 // ========================================
 document.addEventListener('DOMContentLoaded', function() {
-    // Load navigation
-    fetch('nav.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('nav-placeholder').innerHTML = data;
-            initNavigation();
-        })
-        .catch(error => console.error('Error loading navigation:', error));
-
-    // Load footer
-    fetch('footer.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('footer-placeholder').innerHTML = data;
-        })
-        .catch(error => console.error('Error loading footer:', error));
+    // Initialize navigation
+    initNavigation();
 
     // Initialize other features
     initScrollAnimations();
     initSmoothScroll();
     initFormHandling();
+    showSlide(currentCarouselIndex);
 });
 
 // ========================================
