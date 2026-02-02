@@ -700,8 +700,368 @@ section {
 }
 
 /* ========================================
-   RESPONSIVE DESIGN
+   ENHANCED ANIMATIONS & EFFECTS
    ======================================== */
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Zoom Animation */
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes zoomInScale {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(-20px);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        text-shadow: 0 0 5px rgba(107, 78, 55, 0.3);
+        box-shadow: 0 0 15px rgba(107, 78, 55, 0.1);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(212, 165, 116, 0.6);
+        box-shadow: 0 0 30px rgba(212, 165, 116, 0.3);
+    }
+}
+
+/* Slide Animation */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Rotate Animation */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotateIn {
+    from {
+        opacity: 0;
+        transform: rotate(-10deg) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+    }
+}
+
+/* Float Animation */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Ripple Animation */
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Shake Animation */
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-10px);
+    }
+    75% {
+        transform: translateX(10px);
+    }
+}
+
+/* Wave Animation */
+@keyframes wave {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(10deg);
+    }
+    75% {
+        transform: rotate(-10deg);
+    }
+}
+
+/* Apply animations to existing elements */
+.fade-in {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-title {
+    animation: fadeInDown 1s ease-out;
+}
+
+.hero-tagline {
+    animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.hero-subtitle {
+    animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.cta-button {
+    animation: bounceIn 0.8s ease-out;
+    transition: var(--transition);
+}
+
+.cta-button:hover {
+    animation: pulse 2s infinite;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.menu-card {
+    animation: fadeInUp 0.8s ease-out;
+    transition: var(--transition);
+}
+
+.menu-card:hover {
+    animation: float 3s ease-in-out infinite;
+    transform: translateY(-10px);
+}
+
+.menu-icon {
+    animation: rotate 20s linear infinite;
+    transition: var(--transition);
+}
+
+.menu-card:hover .menu-icon {
+    animation: rotate 10s linear infinite;
+}
+
+.stat-item {
+    animation: zoomInScale 0.8s ease-out;
+}
+
+.stat-item h3 {
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.section-header h2 {
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.section-divider {
+    animation: fadeIn 0.8s ease-out;
+}
+
+.scroll-indicator {
+    animation: bounce 2s infinite;
+}
+
+.nav-link {
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--secondary-color);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--secondary-color);
+    transition: width 0.4s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.social-links a {
+    animation: fadeIn 0.8s ease-out;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    animation: bounce 1s infinite;
+    color: var(--primary-color);
+    transform: scale(1.3);
+}
+
+/* Stagger animation for list items */
+.hours-item,
+.contact-info li {
+    animation: fadeInLeft 0.8s ease-out;
+    animation-fill-mode: both;
+}
+
+.hours-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.hours-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.hours-item:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* Smooth transitions for interactive elements */
+input, textarea, select {
+    transition: var(--transition);
+}
+
+input:focus, textarea:focus, select:focus {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Loader animation */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading {
+    animation: spin 1s linear infinite;
+}
+
+
 
 /* Tablet Styles */
 @media (max-width: 768px) {

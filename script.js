@@ -107,7 +107,7 @@ function initSmoothScroll() {
 }
 
 // ========================================
-// SCROLL ANIMATIONS (FADE-IN)
+// ENHANCED SCROLL ANIMATIONS
 // ========================================
 function initScrollAnimations() {
     const observerOptions = {
@@ -116,8 +116,10 @@ function initScrollAnimations() {
     };
 
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
+                // Add staggered animation delay
+                entry.target.style.animationDelay = (index * 0.1) + 's';
                 entry.target.classList.add('visible');
             }
         });
@@ -127,6 +129,65 @@ function initScrollAnimations() {
     const fadeElements = document.querySelectorAll('.fade-in');
     fadeElements.forEach(element => {
         observer.observe(element);
+    });
+
+    // Enhanced parallax effect for hero section
+    window.addEventListener('scroll', () => {
+        const heroSection = document.querySelector('.hero');
+        if (heroSection) {
+            const scrollY = window.scrollY;
+            heroSection.style.backgroundPositionY = scrollY * 0.5 + 'px';
+        }
+    });
+
+    // Counter animation for stats
+    const stats = document.querySelectorAll('.stat-item h3');
+    let hasAnimated = false;
+
+    window.addEventListener('scroll', () => {
+        if (!hasAnimated) {
+            const statsSection = document.querySelector('.about-stats');
+            if (statsSection) {
+                const rect = statsSection.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    animateCounters();
+                    hasAnimated = true;
+                }
+            }
+        }
+    });
+
+    // Menu card hover effect with ripple
+    const menuCards = document.querySelectorAll('.menu-card');
+    menuCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.animation = 'none';
+            setTimeout(() => {
+                this.style.animation = '';
+            }, 10);
+        });
+    });
+}
+
+// Animate counter numbers
+function animateCounters() {
+    const stats = document.querySelectorAll('.stat-item h3');
+    stats.forEach(stat => {
+        const target = parseInt(stat.textContent);
+        const increment = target / 30;
+        let current = 0;
+
+        const updateCount = () => {
+            current += increment;
+            if (current < target) {
+                stat.textContent = Math.ceil(current) + (stat.textContent.includes('+') ? '+' : (stat.textContent.includes('%') ? '%' : ''));
+                requestAnimationFrame(updateCount);
+            } else {
+                stat.textContent = stat.textContent;
+            }
+        };
+
+        updateCount();
     });
 }
 
